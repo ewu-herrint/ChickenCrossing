@@ -41,5 +41,10 @@ public class Node
 		return this.data;
 	}
 	
+	public Node getParent()
+	{
+		return this.parent;
+	}
+	
 	
 }

@@ -8,6 +8,7 @@ public class ChickenCrossing {
 		root.addLeft("Left");
 		root.addRight("Right");
 		
+		System.out.println(root.getData());
 		System.out.println(root.getLeft().getData());
 		System.out.println(root.getRight().getData());
 	}
