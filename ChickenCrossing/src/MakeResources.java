@@ -46,13 +46,12 @@ public class MakeResources
 		return root;
 	}
 	
-	public static String[] makeArray()
+	public static String[] makeArray()	// Can fill array with strings wherever needed. Or not needed even.
 	{
-		String[] array = new String[99];
+		String[] array = new String[99]; // The largest two digit coordinate is 99.
 		array[24] = "mur";
 		array[14] = "der!";
 		
 		return array;
-		
 	}
 }

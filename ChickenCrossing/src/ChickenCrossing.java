@@ -2,14 +2,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * 
+ * @author Tyler Herrin
+ *
+ */
 
 public class ChickenCrossing 
 {
 	public static void main(String[] args) throws FileNotFoundException 
 	{
-		Node root = MakeResources.makeTree();
-		
-		String[] array = MakeResources.makeArray();
+		Node root = MakeResources.makeTree();			//	Call to other classes that make
+		String[] array = MakeResources.makeArray();		//	the binary tree and array.
 		
 		String results = getResults( root);
 		
@@ -25,33 +29,33 @@ public class ChickenCrossing
 		Node curr = root;
 		String results = "";
 		
-		while(in.hasNextLine())
+		while(in.hasNextLine()) // Check if at end of file.
 		{
-			String line = in.nextLine();
+			String line = in.nextLine(); // Grab the next entry.
 			
-			for(int x = 0; x < line.length(); x++)
+			for(int x = 0; x < line.length(); x++) // Progress through string 1 character at a time.
 			{			
-				if(line.charAt(x) == '0')
+				if(line.charAt(x) == '0')	// If character is 0 go left down the tree.
 				{
 					curr = curr.getLeft();
-					if(curr.getData() != null)
+					if(curr.getData() != null)	// If node isn't empty you are at the bottom of that branch.
 					{
-						results += curr.getData();
+						results += curr.getData();	// Add that letter to the results.
 						curr = root;
 					}
 				}
 				
-				else if(line.charAt(x) == '1')
+				else if(line.charAt(x) == '1')	// If character is 1 go right down the tree.
 				{
 					curr = curr.getRight();
-					if(curr.getData() != null)
+					if(curr.getData() != null)	// If node isn't empty you are at the bottom of that branch.
 					{
-						results += curr.getData();
+						results += curr.getData();	// Add that letter to the results.
 						curr = root;
 					}
 				}
 			}
-			results += " ";
+			results += " "; // Add some delimiter between the different lines.
 		}
 		
 		in.close();
@@ -61,19 +65,20 @@ public class ChickenCrossing
 	
 	private static int[] getCoords(String s)
 	{
-		String[] results = s.split(" ");
-		int[] nums = new int[results.length];
-		int[] coords = new int[results.length/2];
+		String[] results = s.split(" "); // Split the results by the delimiter decided on.
+		int[] nums = new int[results.length]; // Make an array to hold each number.
+		int[] coords = new int[results.length/2]; // Make an array half that size for combining integers.
 		
 		for(int x = 0; x < results.length; x++)
 		{
-			nums[x] = getNumber(results[x]);
+			nums[x] = getNumber(results[x]);	// Get the numerical version of each number.
 		}
 		
 		for(int x = 0, y = 0; y < nums.length / 2; x = x + 2, y++)
 		{
-			coords[y] = Integer.valueOf(String.valueOf(nums[x]) + String.valueOf(nums[x + 1]));
-		}
+			coords[y] = Integer.valueOf(String.valueOf(nums[x])	// For every pair of integers convert them
+					+ String.valueOf(nums[x + 1]));				// into strings and concatenate them. Then
+		}														// convert back into integers.
 		
 		return coords;
 	}
