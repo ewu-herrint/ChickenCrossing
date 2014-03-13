@@ -8,14 +8,27 @@ public class ChickenCrossing
 	public static void main(String[] args) throws FileNotFoundException 
 	{
 		Node root = MakeResources.makeTree();
-		Node curr = root;
 		
+		String[] array = MakeResources.makeArray();
+		
+		String results = getResults( root);
+		
+		int[] coords = getCoords(results);
+		
+		System.out.println("Coordinates: " + coords[0] + " " + coords[1]);
+		System.out.println("Why the chicken crossed the road: " + array[coords[0]] + array[coords[1]]);
+	}
+	
+	private static String getResults(Node root) throws FileNotFoundException
+	{
 		Scanner in = new Scanner(new File("chicken.in"));
+		Node curr = root;
 		String results = "";
 		
 		while(in.hasNextLine())
 		{
 			String line = in.nextLine();
+			
 			for(int x = 0; x < line.length(); x++)
 			{			
 				if(line.charAt(x) == '0')
@@ -27,6 +40,7 @@ public class ChickenCrossing
 						curr = root;
 					}
 				}
+				
 				else if(line.charAt(x) == '1')
 				{
 					curr = curr.getRight();
@@ -40,9 +54,9 @@ public class ChickenCrossing
 			results += " ";
 		}
 		
-		int[] coords = getCoords(results);
-		
 		in.close();
+		
+		return results;
 	}
 	
 	private static int[] getCoords(String s)
@@ -56,12 +70,10 @@ public class ChickenCrossing
 			nums[x] = getNumber(results[x]);
 		}
 		
-		for(int x = 0; x < nums.length / 2; x = x + 2)
+		for(int x = 0, y = 0; y < nums.length / 2; x = x + 2, y++)
 		{
-			coords[x] = Integer.valueOf(String.valueOf(nums[x]) + String.valueOf(nums[x + 1]));
+			coords[y] = Integer.valueOf(String.valueOf(nums[x]) + String.valueOf(nums[x + 1]));
 		}
-		
-		System.out.println(coords[0] + " " + coords[1]);
 		
 		return coords;
 	}
@@ -91,5 +103,4 @@ public class ChickenCrossing
 		
 		throw new RuntimeException("String must be a number zero to nine.");
 	}
-
 }

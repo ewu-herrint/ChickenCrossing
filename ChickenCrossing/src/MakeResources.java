@@ -45,4 +45,14 @@ public class MakeResources
 		
 		return root;
 	}
+	
+	public static String[] makeArray()
+	{
+		String[] array = new String[99];
+		array[24] = "mur";
+		array[14] = "der!";
+		
+		return array;
+		
+	}
 }
